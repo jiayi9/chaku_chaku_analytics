@@ -49,7 +49,6 @@ tieIndex = function(x, mode ="keepfirst", RETURN ='negative_removal_index'){
   return(R)
 }
 
-tieIndex(LETTERS)
            
 # add zeros for special ids
 add_zeros = function(x, n=2){

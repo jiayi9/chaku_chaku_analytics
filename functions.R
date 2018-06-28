@@ -11,7 +11,7 @@ tieIndex = function(x, mode ="keepfirst", RETURN ='negative_removal_index'){
   
   unique_N = length(unique(x))
   
-  if(N<=1) stop('Not mant values')
+  if(N <= 1) stop('Not many values (<=1)')
   
   if(N == unique_N) return(rep(TRUE, N))
   

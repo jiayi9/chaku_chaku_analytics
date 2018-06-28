@@ -42,3 +42,27 @@ tieIndex = function(x, mode ="keepfirst", RETURN ='negative_removal_index'){
   
   return(R)
 }
+               
+#
+add_zeros = function(x, n=2){
+  
+  x = as.character(x)
+  LEN = nchar(x)
+  zeros = sapply(LEN, function(i){
+    
+    if(i >=  n) {
+      RR = ''
+    } else {
+      RR = paste(rep(0,n-i), collapse = '')
+    }
+    RR
+  })
+  R = paste0(zeros,x)
+  R
+}
+               
+removeLeadingZero = function(t){
+  substr(t,regexpr("[^0]",t),nchar(t))
+}
+
+               

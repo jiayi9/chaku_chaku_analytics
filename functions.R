@@ -1,13 +1,19 @@
 
+
 # This function take a vector keep the first or last unique values by sequence.
 tieIndex = function(x, mode ="keepfirst", RETURN ='negative_removal_index'){
   
   print('mode = keepfirst or keeplast. RETURN = negative_removal_index or positive_keep_index')
   print(paste('Current mode:', mode))
   print(paste('Current RETURN:', RETURN))
- 
+  
   N = length(x)
-  if(N<=1) return(NULL)
+  
+  unique_N = length(unique(x))
+  
+  if(N<=1) stop('Not mant values')
+  
+  if(N == unique_N) return(rep(TRUE, N))
   
   tmpTies = c()
   L = list()
@@ -42,8 +48,10 @@ tieIndex = function(x, mode ="keepfirst", RETURN ='negative_removal_index'){
   
   return(R)
 }
-               
-#
+
+tieIndex(LETTERS)
+           
+# add zeros for special ids
 add_zeros = function(x, n=2){
   
   x = as.character(x)
@@ -60,7 +68,8 @@ add_zeros = function(x, n=2){
   R = paste0(zeros,x)
   R
 }
-               
+
+# remove zeros for special ids               
 removeLeadingZero = function(t){
   substr(t,regexpr("[^0]",t),nchar(t))
 }

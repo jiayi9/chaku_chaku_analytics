@@ -1,0 +1,44 @@
+
+# This function take a vector keep the first or last unique values by sequence.
+tieIndex = function(x, mode ="keepfirst", RETURN ='negative_removal_index'){
+  
+  print('mode = keepfirst or keeplast. RETURN = negative_removal_index or positive_keep_index')
+  print(paste('Current mode:', mode))
+  print(paste('Current RETURN:', RETURN))
+ 
+  N = length(x)
+  if(N<=1) return(NULL)
+  
+  tmpTies = c()
+  L = list()
+  tieNo = 1
+  
+  for(i in 2:N){
+    if(x[i] == x[i-1]) {
+      tmpTies = union(tmpTies,c(i-1,i))
+      L[[tieNo]] = tmpTies
+    } else{
+      tieNo = tieNo + 1
+      tmpTies = c()
+    }
+  }
+  
+  if(mode == "keepfirst"){
+    # remove the first element to keep it
+    L = lapply(L, function(x) x[-1])
+  } else if( mode == "keeplast"){
+    L = lapply(L, function(x) x[-length(x)])
+  } else {
+    stop("it's either keepfirst or keeplast. check your code.")
+  }
+  
+  tmpINDEX = do.call(c,L)
+  
+  if(RETURN == 'negative_removal_index'){
+    R = -tmpINDEX
+  } else if(RETURN == 'positive_keep_index'){
+    R = (1:length(x))[-tmpINDEX]
+  }
+  
+  return(R)
+}

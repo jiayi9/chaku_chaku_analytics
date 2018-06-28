@@ -1,7 +1,7 @@
 
 
 # This function take a vector keep the first or last unique values by sequence.
-tieIndex = function(x, mode ="keepfirst", RETURN ='negative_removal_index'){
+nontieIndex = function(x, mode ="keepfirst", RETURN ='negative_removal_index'){
   
   print('mode = keepfirst or keeplast. RETURN = negative_removal_index or positive_keep_index')
   print(paste('Current mode:', mode))

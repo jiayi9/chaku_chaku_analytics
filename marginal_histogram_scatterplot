@@ -1,0 +1,32 @@
+
+head(X)
+
+
+library(ggExtra)
+library(ggplot2)
+library(gridExtra)
+
+X2 = X[X$Tp <200 & X$Ts < 200, ]
+ggMarginal(data = X2, x = 'Tp', y = 'Ts') + facet_wrap(~MAE)
+
+
+P = ggplot(X2, aes(x = Tp, y = Ts)) + geom_point()
+PP = ggMarginal(P, type = 'histogram')
+
+gridExtra::grid.arrange(PP,PP)
+
+LIST = sort(unique(X2$MAE))
+
+L = lapply(LIST, function(x){
+  D = X2[X2$MAE == x, ]
+  P = ggplot(D, aes(x = Tp, y = Ts)) + geom_point() + ggtitle(x) + 
+    geom_vline(xintercept = 50) +
+    geom_hline(yintercept = 50) + geom_density2d()
+    
+  PP = ggMarginal(P, type = 'histogram')
+  PP
+})
+
+do.call(grid.arrange, c(L, ncol = 6))
+
+

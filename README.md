@@ -19,7 +19,7 @@ Input: MES timestamp data
 
 Method: Station view time (cycle time), part view time
 
-Usage: Show where parts are stuck. Lead to more investigation for imporvements.
+Usage: Show where parts are stuck. Lead to more investigation for improvements.
 
 
 Level 2

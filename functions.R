@@ -1,5 +1,4 @@
 
-
 # This function take a vector keep the first or last unique values by sequence.
 nontieIndex = function(x, mode ="keepfirst", RETURN ='negative_removal_index'){
   
@@ -13,7 +12,9 @@ nontieIndex = function(x, mode ="keepfirst", RETURN ='negative_removal_index'){
   
   if(N <= 1) stop('Not many values (<=1)')
   
-  if(N == unique_N) return(rep(TRUE, N))
+  if(N == unique_N & RETURN == 'positive_keep_index') return(rep(TRUE, N))
+  if(N == unique_N & RETURN == 'negative_removal_index') return(rep(FALSE, N))
+  
   
   tmpTies = c()
   L = list()
@@ -40,6 +41,9 @@ nontieIndex = function(x, mode ="keepfirst", RETURN ='negative_removal_index'){
   
   tmpINDEX = do.call(c,L)
   
+  if(is.null(tmpINDEX) & RETURN == 'positive_keep_index') return(rep(TRUE, N))
+  if(is.null(tmpINDEX) & RETURN == 'negative_removal_index') return(rep(FALSE, N))
+  
   if(RETURN == 'negative_removal_index'){
     R = -tmpINDEX
   } else if(RETURN == 'positive_keep_index'){
@@ -48,6 +52,7 @@ nontieIndex = function(x, mode ="keepfirst", RETURN ='negative_removal_index'){
   
   return(R)
 }
+
 
            
 # add zeros for special ids
